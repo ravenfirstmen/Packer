@@ -1,0 +1,19 @@
+#cloud-config
+chpasswd:
+  expire: false
+  list: |
+    ubuntu:ubuntu
+
+packages_update: true
+packages_upgrade: true
+packages:
+  - qemu-guest-agent
+
+runcmd:
+  - [ "systemctl", "enable", "--now", "qemu-guest-agent" ]
+
+keyboard:
+  layout: pt
+  model: pc105  
+
+timezone: Europe/Lisbon
