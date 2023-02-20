@@ -4,6 +4,7 @@ Packer manifests to create images (QEMU/LibVirt) for providing a local environme
 
 - Hashicorp Vault (Vault service)
 - Hashicorp Consul (Service mesh)
+- Redhat keycloak (OIDC provider)
 - Prometheus (Metrics collector and aggregator)
 - Prometheus AlertManager (Alerts)
 - Loki (Logs collector & aggregator)
