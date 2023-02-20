@@ -7,7 +7,8 @@ build {
     "source.libvirt.prometheus",
     "source.libvirt.grafana",
     "source.libvirt.loki",
-    "source.libvirt.mattermost"
+    "source.libvirt.mattermost",
+    "source.libvirt.keycloak"
   ]
 
   provisioner "shell" { 
@@ -36,6 +37,12 @@ build {
     environment_vars = ["INSTALLABLE_VAULT_VERSION=${var.vault_version}"]
     only = ["libvirt.vault"]
     script = "./files/packages/install-vault.sh"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["INSTALLABLE_KEYCLOAK_VERSION=${var.keycloak_version}"]
+    only = ["libvirt.keycloak"]
+    script = "./files/packages/install-keycloak.sh"
   }
 
   provisioner "shell" {
