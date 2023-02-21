@@ -11,7 +11,7 @@ build {
     "source.libvirt.keycloak"
   ]
 
-  provisioner "shell" { 
+  provisioner "shell" {
     inline = [
       "/usr/bin/cloud-init status --wait",
     ]
@@ -24,25 +24,25 @@ build {
   }
 
   provisioner "shell" {
-    scripts = [ "./files/packages/install-utils.sh" ]
+    scripts = ["./files/packages/install-utils.sh"]
   }
 
   provisioner "shell" {
     environment_vars = ["INSTALLABLE_CONSUL_VERSION=${var.consul_version}"]
-    only = ["libvirt.consul"]
-    script = "./files/packages/install-consul.sh"
+    only             = ["libvirt.consul"]
+    script           = "./files/packages/install-consul.sh"
   }
 
   provisioner "shell" {
     environment_vars = ["INSTALLABLE_VAULT_VERSION=${var.vault_version}"]
-    only = ["libvirt.vault"]
-    script = "./files/packages/install-vault.sh"
+    only             = ["libvirt.vault"]
+    script           = "./files/packages/install-vault.sh"
   }
 
   provisioner "shell" {
     environment_vars = ["INSTALLABLE_KEYCLOAK_VERSION=${var.keycloak_version}"]
-    only = ["libvirt.keycloak"]
-    script = "./files/packages/install-keycloak.sh"
+    only             = ["libvirt.keycloak"]
+    script           = "./files/packages/install-keycloak.sh"
   }
 
   provisioner "shell" {
@@ -51,24 +51,24 @@ build {
   }
 
   provisioner "shell" {
-    only = ["libvirt.prometheus"]
+    only   = ["libvirt.prometheus"]
     script = "./files/packages/install-prometheus.sh"
   }
 
   provisioner "shell" {
-    only = ["libvirt.grafana"]
+    only   = ["libvirt.grafana"]
     script = "./files/packages/install-grafana.sh"
   }
 
   provisioner "shell" {
-    only = ["libvirt.loki"]
+    only   = ["libvirt.loki"]
     script = "./files/packages/install-loki.sh"
   }
 
   provisioner "shell" {
-    only = ["libvirt.mattermost"]
+    only   = ["libvirt.mattermost"]
     script = "./files/packages/install-mattermost.sh"
-  }  
+  }
 
   provisioner "shell" {
     scripts = [
