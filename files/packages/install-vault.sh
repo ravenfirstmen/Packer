@@ -7,17 +7,5 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt-get update -y && sudo apt-get install vault=$INSTALLABLE_VAULT_VERSION -y
 
 sudo usermod -a -G syslog vault
-
-sudo tee -a /etc/cloud/cloud.cfg.d/99_02_vault.cfg <<EOF
-#cloud-config
-
-merge_how:
-    - name: list
-      settings: [append]
-    - name: dict
-      settings: [no_replace, recurse_list]
-
-bootcmd:
-    - mkdir -p /var/log/vault
-    - chown -R vault:vault /var/log/vault
-EOF
+sudo mkdir -p /var/log/vault
+sudo chown -R vault:vault /var/log/vault

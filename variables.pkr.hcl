@@ -13,3 +13,8 @@ variable "keycloak_version" {
   type    = string
   default = "20.0.3"
 }
+
+variable "cockroach_version" {
+  type    = string
+  default = "v22.2.5"
+}

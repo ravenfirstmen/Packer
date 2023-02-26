@@ -8,7 +8,9 @@ build {
     "source.libvirt.grafana",
     "source.libvirt.loki",
     "source.libvirt.mattermost",
-    "source.libvirt.keycloak"
+    "source.libvirt.keycloak",
+    "source.libvirt.cockroachdb",
+    "source.libvirt.postgres"
   ]
 
   provisioner "shell" {
@@ -46,8 +48,19 @@ build {
   }
 
   provisioner "shell" {
-    except = ["libvirt.prometheus"]
-    script = "./files/packages/install-grafana-agent.sh"
+    environment_vars = ["INSTALLABLE_COCKROACHDB_VERSION=${var.cockroach_version}"]
+    only             = ["libvirt.cockroachdb"]
+    script           = "./files/packages/install-cockroachdb.sh"
+  }
+  
+  provisioner "shell" {
+    only   = ["libvirt.grafana"]
+    script = "./files/packages/install-grafana.sh"
+  }
+
+  provisioner "shell" {
+    only = ["libvirt.postgres"]
+    script = "./files/packages/install-postgres.sh"
   }
 
   provisioner "shell" {
