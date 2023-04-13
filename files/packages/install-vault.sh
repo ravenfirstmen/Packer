@@ -8,4 +8,4 @@ sudo apt-get update -y && sudo apt-get install vault=$INSTALLABLE_VAULT_VERSION 
 
 sudo usermod -a -G syslog vault
 sudo mkdir -p /var/log/vault
-sudo chown -R vault:vault /var/log/vault
+sudo chown -R vault:syslog /var/log/vault

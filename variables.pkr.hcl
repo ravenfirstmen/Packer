@@ -6,7 +6,7 @@ variable "consul_version" {
 
 variable "vault_version" {
   type    = string
-  default = "1.12.2-1"
+  default = "1.13.1-1"
 }
 
 variable "keycloak_version" {

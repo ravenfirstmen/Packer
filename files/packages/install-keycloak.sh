@@ -13,6 +13,7 @@ sudo mkdir -p /opt/keycloak
 sudo mv keycloak-$INSTALLABLE_KEYCLOAK_VERSION/* /opt/keycloak
 
 sudo useradd --system --user-group --shell /bin/false keycloak
+sudo usermod -a -G syslog keycloak
 
 sudo chown -R keycloak:keycloak /opt/keycloak
 sudo chmod o+x /opt/keycloak/bin/
@@ -21,7 +22,7 @@ rm -rf keycloak-$INSTALLABLE_KEYCLOAK_VERSION.zip
 rm -rf keycloak-$INSTALLABLE_KEYCLOAK_VERSION
 
 sudo mkdir -p /var/log/keycloak
-sudo chown -R keycloak:keycloak /var/log/keycloak
+sudo chown -R keycloak:syslog /var/log/keycloak
 
 cat <<'EOF' | sudo tee /lib/systemd/system/keycloak.service
 [Unit]
