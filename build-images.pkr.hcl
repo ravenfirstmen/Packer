@@ -69,11 +69,6 @@ build {
   }
 
   provisioner "shell" {
-    only   = ["libvirt.grafana"]
-    script = "./files/packages/install-grafana.sh"
-  }
-
-  provisioner "shell" {
     only   = ["libvirt.loki"]
     script = "./files/packages/install-loki.sh"
   }
@@ -81,6 +76,17 @@ build {
   provisioner "shell" {
     only   = ["libvirt.mattermost"]
     script = "./files/packages/install-mattermost.sh"
+  }
+
+  provisioner "shell" {
+    only   = [
+      "libvirt.consul",
+      "libvirt.vault",
+      "libvirt.keycloak",
+      "libvirt.cockroachdb",
+      "libvirt.postgres"
+    ]
+    script = "./files/packages/install-grafana-agent.sh"
   }
 
   provisioner "shell" {
